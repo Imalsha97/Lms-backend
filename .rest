@@ -1,0 +1,78 @@
+GET http://localhost:3000/book
+
+###
+POST http://localhost:3000/book
+Content-Type: application/json
+
+{
+   "title":"html",
+   "author":"p.k.perera"
+}
+
+###
+GET http://localhost:3000/book/618c15dd7d1da24d09bcadf2
+
+###
+PUT http://localhost:3000/book/618c1683307858746bf4024e/burrow
+Content-Type: application/json
+
+{
+    "burrowedMemberId":"member1",
+    "burrowedDate":"2021-11-02T01:29:28.927Z"
+}
+
+###
+###
+PUT http://localhost:3000/book/618c1690307858746bf40250
+Content-Type: application/json
+
+{
+     "title":"Algebra",
+   "author":"Ajith perera"
+}
+###
+DELETE http://localhost:3000/book/618c15dd7d1da24d09bcadf2
+
+
+###
+
+//member apis
+POST http://localhost:3000/member
+Content-Type: application/json
+
+{
+   "nic":"1313141512v",
+   "firstName":"Nipuni",
+   "middleName":"Madeesha",
+   "lastName":"Karunarathne",
+   "contactNumber":"0714475123",
+   "address":"No: 525/3 , Pitptana, Horana",
+    "userType":"School"
+
+   
+}
+
+###
+GET http://localhost:3000/member
+
+###
+GET http://localhost:3000/member/618d8e8792810cbffc117ba9
+
+###
+PUT http://localhost:3000/member/618d8e8792810cbffc117ba9
+Content-Type: application/json
+
+{
+     "nic":"12121212v",
+   "firstName":"ishadi",
+   "middleName":"sajee",
+   "lastName":"perera",
+   "contactNumber":"07142325123",
+   "address":"No: 501/3 , North, Homagama",
+    "userType":"School"
+}
+###
+DELETE http://localhost:3000/member/618d8e8792810cbffc117ba9
+
+
+###
