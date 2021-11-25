@@ -1,7 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const Book = require("./models/book");
 const Member =require("./models/member");
+
 
 const server = express();
 const databaseURL = "mongodb+srv://imalsha:imalsha123@student.3uh4o.mongodb.net/lms?retryWrites=true&w=majority";
@@ -50,6 +52,7 @@ server.get("/book",async(req,res) => {
     const books = await Book.find();
     res.send(books);
 });
+server.use(cors());
 server.use(express.urlencoded({extended:true}));
 server.use(express.json());
 
@@ -117,7 +120,7 @@ server.put("/book/:id/burrow",async(req,res) => {
 
 // /book/:id/return : Return book
 // /book/:id/return
-
+//comment
 server.put("/book/:id/return",async (req, res) => {
     const id = req.params.id;
   
