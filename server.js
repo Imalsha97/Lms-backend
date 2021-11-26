@@ -200,28 +200,54 @@ server.delete("/book/:id",async (req, res) => {
     const book = await Book.findByIdAndDelete(id);
     res.send(book);
   });
-  
+
+//members
+  const convertToMember =  (member) => {
+    return {
+        id : member._id,
+        nic:member.nic,
+        firstName:member.firstName,
+        middleName : member.middleName,
+        lastName:member.lastName,
+        contactNumber:member.contactNumber,
+        address:member.address,
+        userType:member.userType,
+    };
+};
+
+const sendMember = async (res, id) => {
+    const member = await Member.findById(id);
+    res.send(convertToMember(member));
+}
 //member api
 //create member
 server.post("/member",async (req,res) => {
     const { nic,firstName,middleName,lastName,contactNumber,address,userType } = req.body;
-    const member = new Member({ nic,firstName,middleName,lastName,contactNumber,address,userType });
+    const member = new Member({
+         nic,
+         firstName,
+         middleName,
+         lastName,
+         contactNumber,
+         address,
+         userType });
     const response = await member.save();
     // console.log(response);
-    res.send(response);
+    res.send(convertToMember(response));
 });
 //get all members 
 server.get("/member", async (req,res) => {
     const members = await Member.find();
-    res.send(members);
+    res.send(members.map((member) => {
+        return convertToMember(member)
+    }));
 
 });
 
 //get a one member
 server.get("/member/:id",async(req,res) => {
     const id = req.params.id;
-    const member = await Member.findById(id);
-    res.send(member);
+   sendMember(res,id);
 });
 
 //update a member
@@ -237,8 +263,7 @@ server.put("/member/:id",async(req,res) => {
         address,
         userType,
     });
-    res.send(member);
-
+   sendMember(res,id);
 });
 
 //delete member 
