@@ -1,4 +1,5 @@
 const express = require("express");
+
 const mongoose = require("mongoose");
 const cors = require("cors");
 const Book = require("./models/book");
@@ -6,6 +7,8 @@ const Member =require("./models/member");
 
 
 const server = express();
+server.use(cors());
+
 const databaseURL = "mongodb+srv://imalsha:imalsha123@student.3uh4o.mongodb.net/lms?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 3000;
 
@@ -22,7 +25,6 @@ mongoose.connect(databaseURL,{
 .catch((err)=> {
     console.log(err);
 });
-
 
 
 // let books = [
@@ -52,7 +54,7 @@ server.get("/book",async(req,res) => {
     const books = await Book.find();
     res.send(books);
 });
-server.use(cors());
+
 server.use(express.urlencoded({extended:true}));
 server.use(express.json());
 
